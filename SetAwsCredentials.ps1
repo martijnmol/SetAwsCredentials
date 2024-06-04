@@ -10,10 +10,10 @@ function GetAwsAccessToken()
 		$content = Get-Content $file.FullName
 		if($content.Contains("startUrl"))
 		{
-			$fileTokenText = [string]::Join("`n", $content)
-			$match = [regex]::Match($fileTokenText, 'accessToken": "(.*)(?=",)(.*)"expiresAt": "(.*)"}')
+			$fileTokenText = [string]::Join("`n", $content)			
+			$match = [regex]::Match($fileTokenText, 'accessToken": "(.*)(?=",)(.*)"expiresAt": "(.*)(?=",)(.*)"clientId"')
 			$accessToken = $match.Groups[1].Value
-			$expirationString=$match.Groups[3].Value
+			$expirationString=$match.Groups[3].Value	
 			break;
 		}
 	}
